@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{mainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-menu">
+                <li><a th:href = "@{/mainPage#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href = "@{/mainPage#reports}" class="menu-item">Отзывы</a></li>
+                <li>
+                    <a th:href="@{authorizationPage}" class="menu-item">Войти</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div id="login">
+                <form th:action="@{/authorizationPage}" th:method="POST">
+                    <div>
+                        <p>
+                            <input type="text" th:field="*{user.login}" placeholder="Введите логин" required />
+                        </p>
+                        <p>
+                            <input id="pass400" type="password" th:field="*{user.password}" placeholder="Введите пароль" required />
+                        </p>
+                        <p>
+                            <input type="submit" value="ВОЙТИ" />
+                        </p>
+                    </div>
+                </form>
+                <p class="registration_line">
+                    Нет аккаунта?
+                    <a th:href="registrationPage" class="menu-item" id="registration">Регистрация</a>
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>

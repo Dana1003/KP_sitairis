@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{studentMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-student-menu">
+                <li><a th:href="@{studentMainPage#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{studentMainPage#teachers}" class="menu-item">Преподаватели</a></li>
+                <li><a th:href="@{studentMainPage#reports}" class="menu-item">Отзывы</a></li>
+                <div class="dropdown">
+                    <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{studentProfile}" class="menu-item">Профиль</a></li>
+                        <li><a href="#" class="menu-item">Записаться на курс</a></li>
+                        <li><a href="#" class="menu-item">Оставить отзыв</a></li>
+                        <li><a href="#" class="menu-item">Рейтинг</a></li>
+                    </ul>
+                </div>
+                <li>
+                    <a th:href="@{mainPage}" class="menu-item">Выйти</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div id="question">
+                <form th:action="@{/questionnairePage}" th:method="POST">
+                    <div>
+                        <p>
+                            <!--<legend>*Выберите ваш уровень:</legend>-->
+                            <select name="studentLevel[]" th:field="*{quest.studentLevel}" class="registration_field" required="required">
+                                <option value="" disabled>*Выберите ваш уровень:</option>
+                                <option th:value="Junior">Junior</option>
+                                <option th:value="Middle">Middle</option>
+                                <option th:value="Senior">Senior</option>
+                            </select>
+                        </p>
+                        <p class="registration_field">
+                            <input type="text" th:field="*{quest.languages}" placeholder="*Введите языки программирования, которыми вы владеете"/>
+                        </p>
+                        <p>
+                           <!-- <legend>*Выберите ваш уровень английского:</legend>-->
+                            <select name="englishLevel[]" th:field="*{quest.englishLevel}" class="registration_field" required="required">
+                                <option value="" disabled>*Выберите ваш уровень английского:</option>
+                                <option th:value="A1">Beginner (Начальный)</option>
+                                <option th:value="A2">Elementary (Базовый)</option>
+                                <option th:value="B1">Intermediate (Средний)</option>
+                                <option th:value="B2">Upper-Intermediate (Выше среднего)</option>
+                                <option th:value="C1">Advanced (Продвинутый)</option>
+                                <option th:value="C2">Proficiency (Владение в совершенстве)</option>
+                            </select>
+                        </p>
+                        <p class="registration_field">
+                            <input type="text" th:field="*{quest.goals}" placeholder="Расскажите о ваших целях" />
+                        </p>
+                        <p class="questionnaire_field">
+                            *Выберите ваш пол:
+                            <input type="radio" th:field="*{quest.sex}" id="man" checked value="M" name="sex">
+                            <label th:for="${quest.sex}">Мужской</label>
+                            <input type="radio" th:field="*{quest.sex}" id="female" value="Ж" name="sex">
+                            <label th:for="${quest.sex}">Женский</label>
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="number" th:field="*{quest.age}" placeholder="*Введите ваш возраст" required/>
+                        </p>
+                        <p class="questionnaire_field1">
+                            <input type="text" th:field="*{quest.phoneNumber}" placeholder="Введите номер телефона" />
+                        </p>
+                        <p class="save_field">
+                            <input type="submit" value="Сохранить" />
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>

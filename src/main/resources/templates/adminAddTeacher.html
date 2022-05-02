@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{adminMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-admin-menu">
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Добавление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminAddCourse}" class="menu-item">Добавить курс</a></li>
+                        <li><a th:href="@{adminAddTeacher}" class="menu-item">Добавить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Удаление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminDeleteCourse}" class="menu-item">Удалить курс</a></li>
+                        <li><a href="" class="menu-item">Удалить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Редактирование</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminEditCourse}" class="menu-item">Редактировать курс</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Просмотр</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminMainPage#education}" class="menu-item">Посмотреть курсы</a></li>
+                        <li><a th:href="@{adminMainPage#teachers}" class="menu-item">Посмотреть учителей</a></li>
+                        <li><a th:href="@{adminMainPage#questionnaire}" class="menu-item">Посмотреть анкеты</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+        <nav class="nav-class">
+            <ul class="list-admin-menu">
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Добавление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminAddCourse}" class="menu-item">Добавить курс</a></li>
+                        <li><a th:href="@{adminAddTeacher}" class="menu-item">Добавить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Удаление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Удалить курс</a></li>
+                        <li><a href="#" class="menu-item">Удалить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Редактирование</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Редактировать курс</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Просмотр</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Посмотреть курсы</a></li>
+                        <li><a href="#" class="menu-item">Посмотреть учителей</a></li>
+                        <li><a href="#" class="menu-item">Посмотреть анкету</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div id="question">
+                <form th:action="@{/adminAddTeacher}" th:method="POST">
+                    <div>
+                        <p class="questionnaire_field">
+                            <input type="text" th:field="*{teacher.lastName}" placeholder="Введите Фамилию преподавателя" required />
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="text" th:field="*{teacher.name}" placeholder="Введите Имя преподавателя" required />
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="text" th:field="*{user.login}" placeholder="Введите логин преподавателя" required />
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="password" th:field="*{user.password}" placeholder="Введите пароль преподавателя" required/>
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="number" th:field="*{teacher.experience}" placeholder="Введите стаж преподавателя" required/>
+                        </p>
+                        <p class="questionnaire_field">
+                            <input type="text" th:field="*{teacher.additionalInfo}" placeholder="Введите информацию о преподавателе"/>
+                        </p>
+                        <p class="save_field">
+                            <input type="submit" value="СОХРАНИТЬ ПРЕПОДАВАТЕЛЯ" />
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>

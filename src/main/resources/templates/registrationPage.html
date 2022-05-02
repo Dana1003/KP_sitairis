@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <!--<link rel="icon" type="image/x-icon" href="favicon.png">-->
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{mainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-menu">
+                <li><a th:href="@{mainPage#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{mainPage#reports}" class="menu-item">Отзывы</a></li>
+                <li><a th:href="@{authorizationPage}" class="menu-item">Войти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div id="login">
+                <form th:action="@{/registrationPage}" th:method="POST">
+                    <div>
+                        <p class="registration_field">
+                            <input type="text" th:field="*{student.lastName}" placeholder="Введите Фамилию" required />
+                        </p>
+                        <p class="registration_field">
+                            <input type="text" th:field="*{student.name}" placeholder="Введите Имя" required />
+                        </p>
+                        <p class="registration_field">
+                            <input type="text" th:field="*{user.login}" placeholder="Введите логин" required />
+                        </p>
+                        <p class="registration_field">
+                            <input id="pass400" type="password" th:field="*{user.password}" placeholder="Введите пароль" required />
+                        </p>
+                        <p class="registration_field">
+                            <input type="email" th:field="*{student.email}" placeholder="Введите электронную почту" required />
+                        </p>
+                        <p class="save_field">
+                            <input type="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ" />
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{mainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-menu">
+                <li><a th:href="@{#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{#reports}" class="menu-item">Отзывы</a></li>
+                <li><a th:href="@{authorizationPage}" class="menu-item">Войти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection"></section>
+        <section class="section" id="education">
+            <div class="title-wrapper">
+                <h2 class="title">Обучение</h2>
+            </div>
+            <div class="reports-item">
+                <table class="student_table">
+                    <tr>
+                        <th>Название курса</th>
+                        <th>Язык программирования</th>
+                        <th>Продолжительность (в месяцах)</th>
+                        <th>Преподаватель</th>
+                    </tr>
+                    <div th:each="course: ${courses}">
+                        <tr>
+                            <td th:text="${course.courseName}"></td>
+                            <td th:text="${course.language}"></td>
+                            <td th:text="${course.duration}"></td>
+                            <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
+                        </tr>
+                    </div>
+                </table>
+                <p id="login">
+                    <input id="nameCourse" type="text" placeholder="Введите название курса" />
+                    <input onclick="findCourse()" type="submit" value="НАЙТИ" />
+                </p>
+            </div>
+        </section>
+        <section class="section" id="reports">
+            <div class="title-wrapper">
+                <h2 class="title">Отзывы</h2>
+            </div>
+            <div class="reports-item">-----------------------------------------------</div>
+        </section>
+
+    </main>
+    <footer></footer>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var data = /*[[${courses}]]*/; //list
+    /*]]>*/
+    function findCourse(){
+        let word = $('#nameCourse').val();
+        let filteredData = [];
+        for(let i=0;i<data.length;i++){
+            if(data[i].courseName == word){
+                filteredData.push(data[i]);
+            }
+        }
+        if(filteredData.length!=0)
+        {
+            alert("Название курса:   " + filteredData[0].courseName + "\n" +
+                "Язык программирования:   " + filteredData[0].language + "\n" +
+                "Продолжительность (в месяцах):   " + filteredData[0].duration + "\n" +
+                "Преподаватель:   " + filteredData[0].teacher.name + ' ' + filteredData[0].teacher.lastName);
+
+        }
+        else
+            alert('Такого курса не найдено... Введите данные ещё раз');
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>

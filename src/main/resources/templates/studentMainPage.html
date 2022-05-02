@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{studentMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-student-menu">
+                <li><a th:href="@{#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{#teachers}" class="menu-item">Преподаватели</a></li>
+                <li><a th:href="@{#reports}" class="menu-item">Отзывы</a></li>
+                <div class="dropdown">
+                <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{/student/studentProfile/{id}}" class="menu-item">Профиль</a></li>
+                        <li><a href="#" class="menu-item">Записаться на курс</a></li>
+                        <li><a href="#" class="menu-item">Оставить отзыв</a></li>
+                        <li><a href="#" class="menu-item">Рейтинг</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <a th:href="@{/questionnairePage}" class="menu-item" id="questionnaire_but">Заполнить анкету</a>
+        </section>
+        <section class="section" id="education">
+            <div class="title-wrapper">
+                <h2 class="title">Обучение</h2>
+            </div>
+            <div class="reports-item">
+                <table class="student_table">
+                    <tr>
+                        <th>Название курса</th>
+                        <th>Язык программирования</th>
+                        <th>Продолжительность</th>
+                        <th>Преподаватель</th>
+                    </tr>
+                    <div th:each="course: ${courses}">
+                        <tr>
+                            <td th:text="${course.courseName}"></td>
+                            <td th:text="${course.language}"></td>
+                            <td th:text="${course.duration}"></td>
+                            <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </section>
+        <section class="section" id="teachers">
+            <div class="title-wrapper">
+                <h2 class="title">Преподаватели</h2>
+            </div>
+            <div class="reports-item">
+                <table class="student_table">
+                    <tr>
+                        <th>Имя преподавателя</th>
+                        <th>Стаж</th>
+                        <th>Рейтинг</th>
+                        <th>О себе</th>
+                    </tr>
+                    <div th:each="teacher: ${teachers}">
+                        <tr>
+                            <td th:text="${teacher.name} + ' ' + ${teacher.lastName}"></td>
+                            <td th:text="${teacher.experience}"></td>
+                            <td th:text="${teacher.rating}"></td>
+                            <td th:text="${teacher.additionalInfo}"></td>
+                        </tr>
+                    </div>
+                </table>
+            </div>
+        </section>
+        <section class="section" id="reports">
+            <div class="title-wrapper">
+                <h2 class="title">Отзывы</h2>
+            </div>
+            <div class="reports-item">-----------------------------------------------</div>
+        </section>
+
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
