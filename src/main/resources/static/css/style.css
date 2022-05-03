@@ -59,7 +59,7 @@ ul {
 .list-menu {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
     list-style: none;
     width: 550px;
@@ -74,7 +74,7 @@ ul {
     display: flex;
     position: relative;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
     list-style: none;
     width: 870px;
