@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="rus" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{adminMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-admin-menu">
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Добавление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminAddCourse}" class="menu-item">Добавить курс</a></li>
+                        <li><a th:href="@{adminAddTeacher}" class="menu-item">Добавить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Удаление</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminDeleteCourse}" class="menu-item">Удалить курс</a></li>
+                        <li><a th:href="@{/adminDeleteTeacher}" class="menu-item">Удалить учителя</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Редактирование</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminEditCourse}" class="menu-item">Редактировать курс</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Просмотр</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{adminMainPage#education}" class="menu-item">Посмотреть курсы</a></li>
+                        <li><a th:href="@{adminMainPage#teachers}" class="menu-item">Посмотреть учителей</a></li>
+                        <li><a th:href="@{adminMainPage#questionnaire}" class="menu-item">Посмотреть анкеты</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Сортировка</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{/adminSortedCourses}" class="menu-item">Сортировать курсы по длительности</a></li>
+                        <li><a href="#" class="menu-item">Сортировать учителей по рейтингу</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div class="delete_table">
+                <div class="reports-item">
+                    <table id="delete_table">
+                        <tr>
+                            <th>Название курса</th>
+                            <th>Язык программирования</th>
+                            <th>Продолжительность</th>
+                            <th>Преподаватель</th>
+                        </tr>
+                        <div th:each="course: ${sortedList}">
+                            <tr>
+                                <td th:text="${course.courseName}"></td>
+                                <td th:text="${course.language}"></td>
+                                <td th:text="${course.duration}"></td>
+                                <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
+                            </tr>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
