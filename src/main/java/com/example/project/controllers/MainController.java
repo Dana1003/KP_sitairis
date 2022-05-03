@@ -68,7 +68,7 @@ public class MainController {
         return "registrationPage";
     }
     @PostMapping("/registrationPage")
-    public String regisPost(@ModelAttribute("student") Student student, @ModelAttribute("user") Users user) {
+    public String regisPost(@ModelAttribute("student") Student student, @ModelAttribute("user") Users user, RedirectAttributes redirectAttributes) {
         Boolean bool = false;
 
         user.setRole("student");
@@ -98,7 +98,8 @@ public class MainController {
                 var addedUser = usersRepository.save(user);
                 student.setUsers(addedUser);
                 studentRepository.save(student);
-                return "redirect:/studentMainPage"; // вызов метода  mainGet который потом вызовет страницу mainPage
+                //redirect
+                return "redirect:/studentMainPage";
             }
         }
     }
