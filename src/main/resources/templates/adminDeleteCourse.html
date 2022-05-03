@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="rus" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>СиТАиРИС</title>
@@ -28,7 +27,7 @@
                     <li><a href="#" class="menu-item">Удаление</a></li>
                     <ul class="dropdown-content">
                         <li><a th:href="@{adminDeleteCourse}" class="menu-item">Удалить курс</a></li>
-                        <li><a href="" class="menu-item">Удалить учителя</a></li>
+                        <li><a th:href="@{/adminDeleteTeacher}" class="menu-item">Удалить учителя</a></li>
                     </ul>
                 </div>
                 <div class="dropdown">
@@ -45,6 +44,13 @@
                         <li><a th:href="@{adminMainPage#questionnaire}" class="menu-item">Посмотреть анкеты</a></li>
                     </ul>
                 </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Сортировка</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Сортировать курсы по длительности</a></li>
+                        <li><a href="#" class="menu-item">Сортировать учителей по рейтингу</a></li>
+                    </ul>
+                </div>
                 <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
             </ul>
         </nav>
@@ -59,8 +65,6 @@
                         <th>Язык программирования</th>
                         <th>Продолжительность</th>
                         <th>Преподаватель</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     <div th:each="course: ${courses}">
                         <tr>
@@ -68,7 +72,6 @@
                             <td th:text="${course.language}"></td>
                             <td th:text="${course.duration}"></td>
                             <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
-                           <!-- <th ><a th:text="Редактировать" th:href="@{admin/editCourse/{id}(id=${course.id})}"></a></th>-->
                             <th><a th:text="Удалить" th:href="@{/admin/deleteCourse/{id}(id=${course.id})}"></a></th>
                         </tr>
                     </div>
