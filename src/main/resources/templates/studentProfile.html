@@ -11,7 +11,7 @@
     <header>
         <nav class="nav-class1">
             <ul class="list-menu1">
-                <li><a th:href="@{studentMainPage}" class="menu-item">MoveRight</a></li>
+                <li><a th:href="@{/studentMainPage}" class="menu-item">MoveRight</a></li>
             </ul>
         </nav>
         <nav class="nav-class">
@@ -22,35 +22,35 @@
                 <div class="dropdown">
                     <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
                     <ul class="dropdown-content">
-                        <li><a th:href="@{/student/studentProfile/{id}}" class="menu-item">Профиль</a></li>
-                        <li><a href="#" class="menu-item">Записаться на курс</a></li>
+                        <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>
+                        <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
                         <li><a href="#" class="menu-item">Оставить отзыв</a></li>
                         <li><a href="#" class="menu-item">Рейтинг</a></li>
                     </ul>
                 </div>
-                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+                <li><a th:href="@{/mainPage}" class="menu-item">Выйти</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section class="section" id="mainSelection">
             <div id="question">
-                <form th:action="@{/student/studentProfile/{id}(id=${currentStudent.id})}" th:method="PATCH">
+                <form th:action="@{/student/studentProfile/{id}(id=${staticStudent.id})}" th:method="PATCH">
                     <p>Хотите изменить текущие данные?</p>
                     <p class="registration_field">
-                        Логин <input type="text" th:field="*{currentStudent.users.login}" placeholder="Логин" required/>
+                        Логин <input type="text" th:field="*{staticStudent.users.login}" placeholder="Логин" required/>
                     </p>
                     <p class="registration_field">
-                        Пароль <input type="text" th:field="*{currentStudent.users.password}" placeholder="Пароль" required/>
+                        Пароль <input type="text" th:field="*{staticStudent.users.password}" placeholder="Пароль" required/>
                     </p>
                     <p class="registration_field">
-                        Имя <input type="text" th:field="*{currentStudent.name}" placeholder="Имя" required/>
+                        Имя <input type="text" th:field="*{staticStudent.name}" placeholder="Имя" required/>
                     </p>
                     <p class="registration_field">
-                        Фамилия <input type="text" th:field="*{currentStudent.lastName}" placeholder="Фамилия" required/>
+                        Фамилия <input type="text" th:field="*{staticStudent.lastName}" placeholder="Фамилия" required/>
                     </p>
                     <p class="registration_field">
-                        Почта <input id="pass610" type="email" th:field="*{currentStudent.email}" placeholder="Почта" required/>
+                        Почта <input id="pass610" type="email" th:field="*{staticStudent.email}" placeholder="Почта" required/>
                     </p>
                     <p class="save_field">
                         <input type="submit" value="Сохранить" />
