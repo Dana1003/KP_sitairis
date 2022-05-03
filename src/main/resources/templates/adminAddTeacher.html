@@ -28,7 +28,7 @@
                     <li><a href="#" class="menu-item">Удаление</a></li>
                     <ul class="dropdown-content">
                         <li><a th:href="@{adminDeleteCourse}" class="menu-item">Удалить курс</a></li>
-                        <li><a href="" class="menu-item">Удалить учителя</a></li>
+                        <li><a th:href="@{/adminDeleteTeacher}" class="menu-item">Удалить учителя</a></li>
                     </ul>
                 </div>
                 <div class="dropdown">
@@ -45,43 +45,18 @@
                         <li><a th:href="@{adminMainPage#questionnaire}" class="menu-item">Посмотреть анкеты</a></li>
                     </ul>
                 </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Сортировка</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Сортировать курсы по длительности</a></li>
+                        <li><a href="#" class="menu-item">Сортировать учителей по рейтингу</a></li>
+                    </ul>
+                </div>
                 <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
             </ul>
         </nav>
     </header>
-        <nav class="nav-class">
-            <ul class="list-admin-menu">
-                <div class="dropdown">
-                    <li><a href="#" class="menu-item">Добавление</a></li>
-                    <ul class="dropdown-content">
-                        <li><a th:href="@{adminAddCourse}" class="menu-item">Добавить курс</a></li>
-                        <li><a th:href="@{adminAddTeacher}" class="menu-item">Добавить учителя</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <li><a href="#" class="menu-item">Удаление</a></li>
-                    <ul class="dropdown-content">
-                        <li><a href="#" class="menu-item">Удалить курс</a></li>
-                        <li><a href="#" class="menu-item">Удалить учителя</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <li><a href="#" class="menu-item">Редактирование</a></li>
-                    <ul class="dropdown-content">
-                        <li><a href="#" class="menu-item">Редактировать курс</a></li>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <li><a href="#" class="menu-item">Просмотр</a></li>
-                    <ul class="dropdown-content">
-                        <li><a href="#" class="menu-item">Посмотреть курсы</a></li>
-                        <li><a href="#" class="menu-item">Посмотреть учителей</a></li>
-                        <li><a href="#" class="menu-item">Посмотреть анкету</a></li>
-                    </ul>
-                </div>
-                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
-            </ul>
-        </nav>
+
     </header>
     <main>
         <section class="section" id="mainSelection">
