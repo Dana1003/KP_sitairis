@@ -28,7 +28,7 @@
                     <li><a href="#" class="menu-item">Удаление</a></li>
                     <ul class="dropdown-content">
                         <li><a th:href="@{adminDeleteCourse}" class="menu-item">Удалить курс</a></li>
-                        <li><a href="" class="menu-item">Удалить учителя</a></li>
+                        <li><a th:href="@{/adminDeleteTeacher}" class="menu-item">Удалить учителя</a></li>
                     </ul>
                 </div>
                 <div class="dropdown">
@@ -43,6 +43,13 @@
                         <li><a th:href="@{adminMainPage#education}" class="menu-item">Посмотреть курсы</a></li>
                         <li><a th:href="@{adminMainPage#teachers}" class="menu-item">Посмотреть учителей</a></li>
                         <li><a th:href="@{adminMainPage#questionnaire}" class="menu-item">Посмотреть анкеты</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <li><a href="#" class="menu-item">Сортировка</a></li>
+                    <ul class="dropdown-content">
+                        <li><a href="#" class="menu-item">Сортировать курсы по длительности</a></li>
+                        <li><a href="#" class="menu-item">Сортировать учителей по рейтингу</a></li>
                     </ul>
                 </div>
                 <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
