@@ -170,4 +170,11 @@ public class AdminController {
         model.addAttribute("sortedList", sortedCourses);
         return "adminSortedCourses";
     }
+    @GetMapping("/adminSortedTeachers")
+    public String sortdedTeachersGet(Model model) {
+        var teachersList = (ArrayList<Teacher>) teacherRepository.findAll();
+        var sortedTeachers = teachersList.stream().sorted(Comparator.comparing(Teacher::getExperience)).collect(Collectors.toList());
+        model.addAttribute("sortedList", sortedTeachers);
+        return "adminSortedTeachers";
+    }
 }
