@@ -98,7 +98,7 @@ public class AdminController {
         else {
             courseRepository.save(course);
         }
-        return "redirect:/adminAddCourse";
+        return "redirect:/adminMainPage";
     }
     @GetMapping("/adminDeleteCourse")
     public String adminDCGet(Model model){
@@ -140,5 +140,22 @@ public class AdminController {
     public String deleteCourseById(Model model, @ModelAttribute("course") Course course){
         courseRepository.delete(course);
         return "redirect:/adminDeleteCourse";
+    }
+
+    @GetMapping("/adminDeleteTeacher")
+    public String adminDTGet(Model model){
+        var teachersList = teacherRepository.findAll();
+        model.addAttribute("teachers", teachersList);
+        return "adminDeleteTeacher";
+    }
+    @GetMapping(path = "/admin/deleteTeacher/{id}")
+    public String deleteTeacher(Model model, @PathVariable("id") int id){
+        model.addAttribute("teacher", teacherRepository.findById(id).get());
+        return "confirmDeleteTeacher";
+    }
+    @DeleteMapping(path = "/admin/deleteTeacher/{id}")
+    public String deleteTeacherById(Model model, @ModelAttribute("teacher") Teacher teacher){
+        teacherRepository.delete(teacher);
+        return "redirect:/adminDeleteTeacher";
     }
 }
