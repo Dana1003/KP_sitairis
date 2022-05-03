@@ -47,7 +47,7 @@
                     </div>
                 </table>
                 <p id="login">
-                    <input id="nameCourse" type="text" placeholder="Введите название курса" />
+                    <input id="languageCourse" type="text" placeholder="Введите название языка" />
                     <input onclick="findCourse()" type="submit" value="НАЙТИ" />
                 </p>
             </div>
@@ -67,19 +67,21 @@
     var data = /*[[${courses}]]*/; //list
     /*]]>*/
     function findCourse(){
-        let word = $('#nameCourse').val();
+        let word = $('#languageCourse').val();
         let filteredData = [];
         for(let i=0;i<data.length;i++){
-            if(data[i].courseName == word){
+            if(data[i].language == word){
                 filteredData.push(data[i]);
             }
         }
         if(filteredData.length!=0)
         {
-            alert("Название курса:   " + filteredData[0].courseName + "\n" +
-                "Язык программирования:   " + filteredData[0].language + "\n" +
-                "Продолжительность (в месяцах):   " + filteredData[0].duration + "\n" +
-                "Преподаватель:   " + filteredData[0].teacher.name + ' ' + filteredData[0].teacher.lastName);
+            for(let i=0;i<filteredData.length;i++) {
+                alert("Название курса:   " + filteredData[i].courseName + "\n" +
+                    "Язык программирования:   " + filteredData[i].language + "\n" +
+                    "Продолжительность (в месяцах):   " + filteredData[i].duration + "\n" +
+                    "Преподаватель:   " + filteredData[i].teacher.name + ' ' + filteredData[i].teacher.lastName);
+            }
 
         }
         else
