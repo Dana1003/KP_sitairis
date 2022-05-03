@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
-import java.util.zip.CheckedOutputStream;
 
 @Controller
 public class StudentController {
@@ -123,21 +121,24 @@ public class StudentController {
         return "studentAddCourse";
     }
     @PostMapping("/studentAddCourse")
-    public String studAddCoursePost (@ModelAttribute("studCourse") StudentCourse studentCourse) {
-       studentCourse.setStudent(staticStudent);
-       var studCourList = (ArrayList<StudentCourse>)studentCourseRepository.findAll();
-       if(studCourList.size() == 0) {
-           studentCourseRepository.save(studentCourse);
-       }
-       else {
-           for (var item : studCourList) {
-               if (item.getStudent().equals(staticStudent) && item.getCourse().equals(studentCourse.getCourse())) {
-                   break;
-               } else {
-                   studentCourseRepository.save(studentCourse);
-               }
-           }
-       }
+    public String studAddCoursePost (Model model, @ModelAttribute("studCourse") StudentCourse studentCourse) {
+        studentCourse.setStudent(staticStudent);
+        var studCourList = (ArrayList<StudentCourse>)studentCourseRepository.findAll();
+        if(studCourList.size() == 0) {
+            studentCourseRepository.save(studentCourse);
+        }
+        else {
+            var count = 0;
+            for (var item : studCourList) {
+                if (item.getCourse().getId().equals(studentCourse.getCourse().getId()) && item.getStudent().getId().equals(studentCourse.getStudent().getId())) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                studentCourseRepository.save(studentCourse);
+            }
+        }
+
         return "redirect:/studentAddCourse";
     }
 
