@@ -61,6 +61,7 @@ public class StudentController {
     @GetMapping("/questionnairePage")
     public String questPageGet(Model model) {
         model.addAttribute("quest", new Quest());
+        model.addAttribute("staticStudent", getStaticStudent());
         return "questionnairePage";
     }
     @PostMapping("/questionnairePage")
