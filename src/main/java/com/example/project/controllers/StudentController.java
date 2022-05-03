@@ -26,6 +26,8 @@ public class StudentController {
     public TeacherRepository teacherRepository;
     @Autowired
     public StudentCourseRepository studentCourseRepository;
+    @Autowired
+    public ScoreRepository scoreRepository;
 
     protected static Users staticUser;
     protected static Student staticStudent;
@@ -137,5 +139,13 @@ public class StudentController {
            }
        }
         return "redirect:/studentAddCourse";
+    }
+
+    @GetMapping("/studentRating")
+    public String studRatingGet(Model model){
+        var scoreList = scoreRepository.findAll();
+        model.addAttribute("scoreL", scoreList);
+        model.addAttribute("staticStudent", getStaticStudent());
+        return "studentRating";
     }
 }
