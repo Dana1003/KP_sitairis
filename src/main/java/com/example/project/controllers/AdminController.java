@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 @Controller
 public class AdminController {
     @Autowired
@@ -157,5 +161,13 @@ public class AdminController {
     public String deleteTeacherById(Model model, @ModelAttribute("teacher") Teacher teacher){
         teacherRepository.delete(teacher);
         return "redirect:/adminDeleteTeacher";
+    }
+
+    @GetMapping("/adminSortedCourses")
+    public String sortdedCoursesGet(Model model) {
+        var coursesList = (ArrayList<Course>) courseRepository.findAll();
+        var sortedCourses = coursesList.stream().sorted(Comparator.comparing(Course::getDuration)).collect(Collectors.toList());
+        model.addAttribute("sortedList", sortedCourses);
+        return "adminSortedCourses";
     }
 }
