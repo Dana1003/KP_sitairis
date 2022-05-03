@@ -61,16 +61,16 @@
                 <div class="reports-item">
                     <table id="delete_table">
                         <tr>
+                            <th>Продолжительность</th>
                             <th>Название курса</th>
                             <th>Язык программирования</th>
-                            <th>Продолжительность</th>
                             <th>Преподаватель</th>
                         </tr>
                         <div th:each="course: ${sortedList}">
                             <tr>
+                                <td th:text="${course.duration}"></td>
                                 <td th:text="${course.courseName}"></td>
                                 <td th:text="${course.language}"></td>
-                                <td th:text="${course.duration}"></td>
                                 <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
                             </tr>
                         </div>
