@@ -10,7 +10,7 @@ public class Score {
     protected Integer id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "studentCourse_id", unique = true, nullable = false)
+    @JoinColumn(name = "student_course_id", unique = true, nullable = false)
     protected StudentCourse studentCourse;
 
     @Column(name = "task", nullable = false)

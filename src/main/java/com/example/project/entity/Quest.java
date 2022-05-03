@@ -9,13 +9,13 @@ public class Quest {
     @Column(name = "id", nullable = false)
     protected Integer id;
 
-    @Column(name = "studentLevel", nullable = false)
+    @Column(name = "student_level", nullable = false)
     protected String studentLevel;
 
     @Column(name = "languages")
     protected String languages;
 
-    @Column(name = "englishLevel", nullable = false)
+    @Column(name = "english_level", nullable = false)
     protected String englishLevel;
 
     @Column(name = "goals")
@@ -27,7 +27,7 @@ public class Quest {
     @Column(name = "age", nullable = false)
     protected Integer age;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     protected Integer phoneNumber;
 
     public Integer getId() {

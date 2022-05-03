@@ -9,10 +9,10 @@ public class Users {
     @Column(name = "id", nullable = false)
     protected Integer id;
 
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", nullable = false, unique = true)
     protected String login;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, unique = true)
     protected String password;
 
     @Column(name = "role", nullable = false)

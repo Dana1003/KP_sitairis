@@ -12,7 +12,7 @@ public class Student {
     @Column(name = "name", nullable = false)
     protected String name;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "last_name", nullable = false)
     protected String lastName;
 
     @Column(name = "email", nullable = false)

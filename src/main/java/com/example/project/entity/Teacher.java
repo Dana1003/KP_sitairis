@@ -16,13 +16,13 @@ public class Teacher {
     @Column(name = "name", nullable = false)
     protected String name;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "last_name", nullable = false)
     protected String lastName;
 
     @Column(name = "experience", nullable = false)
     protected Integer experience;
 
-    @Column(name = "additionalInfo")
+    @Column(name = "additional_info")
     protected String additionalInfo;
 
     @Column(name = "rating")

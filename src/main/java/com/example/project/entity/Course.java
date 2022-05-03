@@ -13,7 +13,7 @@ public class Course {
     @JoinColumn(name = "teacher_id", unique = true, nullable = false)
     protected Teacher teacher;
 
-    @Column(name = "courseName", nullable = false)
+    @Column(name = "course_name", nullable = false)
     protected String courseName;
 
     @Column(name = "language", nullable = false)

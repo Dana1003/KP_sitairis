@@ -3,6 +3,7 @@ package com.example.project.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "student_course")
 public class StudentCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -10,11 +11,11 @@ public class StudentCourse {
     protected Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id", unique = true, nullable = false)
+    @JoinColumn(name = "student_id", nullable = false)
     protected Student student;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "course_id", unique = true, nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)
     protected Course course;
 
     public Integer getId() {
