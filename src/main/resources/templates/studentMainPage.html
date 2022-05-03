@@ -57,6 +57,10 @@
                         </tr>
                     </div>
                 </table>
+                <p id="login">
+                    <input id="languageCourse" type="text" placeholder="Введите название языка" />
+                    <input onclick="findCourse()" type="submit" value="НАЙТИ" />
+                </p>
             </div>
         </section>
         <section class="section" id="teachers">
@@ -90,7 +94,33 @@
         </section>
 
     </main>
-    <footer></footer>
 </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var data = /*[[${courses}]]*/; //list
+    /*]]>*/
+    function findCourse(){
+        let word = $('#languageCourse').val();
+        let filteredData = [];
+        for(let i=0;i<data.length;i++){
+            if(data[i].language == word){
+                filteredData.push(data[i]);
+            }
+        }
+        if(filteredData.length!=0)
+        {
+            for(let i=0;i<filteredData.length;i++) {
+                alert("Название курса:   " + filteredData[i].courseName + "\n" +
+                    "Язык программирования:   " + filteredData[i].language + "\n" +
+                    "Продолжительность (в месяцах):   " + filteredData[i].duration + "\n" +
+                    "Преподаватель:   " + filteredData[i].teacher.name + ' ' + filteredData[i].teacher.lastName);
+            }
+
+        }
+        else
+            alert('Такого курса не найдено... Введите данные ещё раз');
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
 </html>
