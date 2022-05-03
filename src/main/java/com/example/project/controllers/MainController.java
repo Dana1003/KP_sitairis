@@ -1,6 +1,5 @@
 package com.example.project.controllers;
 
-import com.example.project.entity.Course;
 import com.example.project.entity.Student;
 import com.example.project.entity.Users;
 import com.example.project.repo.CourseRepository;
@@ -56,6 +55,10 @@ public class MainController {
                 if (item.getRole().equals("student")) {
                     redirectAttributes.addFlashAttribute("user", item);
                     return "redirect:/studentMainPage";
+                }
+                if(item.getRole().equals("teacher")) {
+                    redirectAttributes.addFlashAttribute("teacher", item);
+                    return "redirect:/teacherMainPage";
                 }
             }
         }
