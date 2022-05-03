@@ -50,6 +50,7 @@ ul {
 }
 .nav-class {
     margin-left: auto;
+    font-size: 25px;
 }
 .nav-class1 {
     margin-left: 0px;
@@ -237,6 +238,9 @@ main {
 }
 #pass610 {
     width: 610px;
+}
+#pass432{
+    width: 432px;
 }
 
 #login form input:focus {
