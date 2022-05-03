@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{studentMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-student-menu">
+                <li><a th:href="@{#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{#teachers}" class="menu-item">Преподаватели</a></li>
+                <li><a th:href="@{#reports}" class="menu-item">Отзывы</a></li>
+                <div class="dropdown">
+                    <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>
+                        <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
+                        <li><a href="#" class="menu-item">Оставить отзыв</a></li>
+                        <li><a href="#" class="menu-item">Рейтинг</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div class="reports-item">
+                <table id="delete_table">
+                    <tr>
+                        <th>Название курса</th>
+                        <th>Язык программирования</th>
+                        <th>Продолжительность</th>
+                        <th>Преподаватель</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <div th:each="course: ${courses}">
+                        <tr>
+                            <td th:text="${course.courseName}"></td>
+                            <td th:text="${course.language}"></td>
+                            <td th:text="${course.duration}"></td>
+                            <td th:text="${course.teacher.name} + ' ' + ${course.teacher.lastName}"></td>
+                        </tr>
+                    </div>
+                </table>
+                <form th:action="@{/studentProfile}" th:method="POST">
+                <p id="login">
+                    <select name="courses[]" th:field="${studCourse.course}" class="registration_field" id="pass432" required="required">
+                        <option value="" disabled>*Выберите курс:</option>
+                        <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.courseName}"></option>
+                    </select>
+                    <input type="submit" value="ЗАПИСАТЬСЯ" />
+                </p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
