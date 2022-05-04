@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<form th:href="@{/studentReports/Add}" method="POST">
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{/studentMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-student-menu">
+                <li><a th:href="@{/studentMainPage#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{/studentMainPage#teachers}" class="menu-item">Преподаватели</a></li>
+                <li><a th:href="@{/studentMainPage#reports}" class="menu-item">Отзывы</a></li>
+                <div class="dropdown">
+                    <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
+                    <ul class="dropdown-content">
+                   <!--     <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>-->
+                        <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
+                        <li><a th:href="@{/studentReport}" class="menu-item">Оставить отзыв</a></li>
+                        <li><a th:href="@{/studentRating}" class="menu-item">Рейтинг студентов</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{/mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <p id="login">
+                <input th:field="*{report.comment}" type="text" placeholder="Оставьте свой отзыв :)">
+                <input type="submit" value="ОТПРАВИТЬ ОТЗЫВ">
+            </p>
+        </section>
+    </main>
+</div>
+</form>
+</body>
+</html>
