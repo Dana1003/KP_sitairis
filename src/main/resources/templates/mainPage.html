@@ -56,7 +56,9 @@
             <div class="title-wrapper">
                 <h2 class="title">Отзывы</h2>
             </div>
-            <div class="reports-item">-----------------------------------------------</div>
+            <div class="reports-item" th:each="comment : ${list}">
+                <p th:text="*{comment.comment}"></p>
+            </div>
         </section>
 
     </main>
