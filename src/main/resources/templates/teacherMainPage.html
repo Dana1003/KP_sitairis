@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{/teacherMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-menu">
+                <li><a th:href="@{#gradebook}" class="menu-item">Журнал успеваемости</a></li>
+                <li><a href="#" class="menu-item">Учётная запись</a></li>
+                <li><a th:href="@{/mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection"></section>
+        <section class="section" id="gradebook">
+            <div class="title-wrapper">
+                <h2 class="title">Журнал успеваемости</h2>
+            </div>
+            <div class="reports-item">
+                <table class="student_table">
+                    <tr>
+                        <th>Название курса</th>
+                        <th>Преподаватель</th>
+                        <th>Имя студента</th>
+                        <th>Номер задания</th>
+                        <th>Оценка</th>
+                    </tr>
+                    <div th:each="stCourList: ${studentCourseList}">
+                        <tr>
+                            <td th:text="${stCourList.course.courseName}"></td>
+                            <td th:text="${stCourList.course.teacher.name}+ ' ' +${stCourList.course.teacher.lastName}"></td>
+                            <td th:text="${stCourList.student.name}+ ' ' +${stCourList.student.lastName}"></td>
+                            <td th:text="${score.task}"></td>
+                            <td th:text="${score.grade}"></td>
+                        </tr>
+                    </div>
+                </table>
+                <form th:action="@{/teacherMainPage}" th:method="POST">
+                <p id="login">
+                    <select name="students[]" th:field="${score.studentCourse}" class="registration_field" id="pass432" required="required">
+                        <option value="" disabled>*Выберите курс и студента:</option>
+                        <option th:each="studCourse: ${studentCourseList}" th:value="${studCourse.id}" th:text="'*'+${studCourse.course.courseName}+ '*'+ ' ' +${studCourse.student.name} + ' ' +${studCourse.student.lastName}"></option>
+                    </select>
+                    <input id="width1400" type="number" th:field="*{score.task}" placeholder="Введите номер задания" />
+                    <input id="width2400" type="number" th:field="*{score.grade}" placeholder="Введите номер оценку" />
+                    <input type="submit" value="СОХРАНИТЬ" />
+                </p>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
