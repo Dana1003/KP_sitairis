@@ -50,7 +50,7 @@
                             </select>
                         </p>
                         <p class="registration_field">
-                            <input type="text" th:field="*{quest.languages}" placeholder="*Введите языки программирования, которыми вы владеете"/>
+                            <input type="text"  th:field="*{quest.languages}" placeholder="*Введите языки программирования, которыми вы владеете"/>
                         </p>
                         <p>
                            <!-- <legend>*Выберите ваш уровень английского:</legend>-->
@@ -75,10 +75,10 @@
                             <label th:for="${quest.sex}">Женский</label>
                         </p>
                         <p class="questionnaire_field">
-                            <input type="number" th:field="*{quest.age}" placeholder="*Введите ваш возраст" required/>
+                            <input type="number" min="14" max="80" th:field="*{quest.age}" placeholder="*Введите ваш возраст" required/>
                         </p>
                         <p class="questionnaire_field1">
-                            <input type="text" th:field="*{quest.phoneNumber}" placeholder="Введите номер телефона" />
+                            <input type="text" pattern="(44|29)[0-9]{7}"  th:field="*{quest.phoneNumber}" placeholder="Введите номер телефона" />
                         </p>
                         <p class="save_field">
                             <input type="submit" value="Сохранить" />

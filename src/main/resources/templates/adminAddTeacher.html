@@ -64,19 +64,19 @@
                 <form th:action="@{/adminAddTeacher}" th:method="POST">
                     <div>
                         <p class="questionnaire_field">
-                            <input type="text" th:field="*{teacher.lastName}" placeholder="Введите Фамилию преподавателя" required />
+                            <input type="text" minlength="2" maxlength="20"  th:field="*{teacher.lastName}" placeholder="Введите Фамилию преподавателя" required />
                         </p>
                         <p class="questionnaire_field">
-                            <input type="text" th:field="*{teacher.name}" placeholder="Введите Имя преподавателя" required />
+                            <input type="text" minlength="2" maxlength="20"  th:field="*{teacher.name}" placeholder="Введите Имя преподавателя" required />
                         </p>
                         <p class="questionnaire_field">
-                            <input type="text" th:field="*{user.login}" placeholder="Введите логин преподавателя" required />
+                            <input type="text" minlength="5" maxlength="20" th:field="*{user.login}" placeholder="Введите логин преподавателя" required />
                         </p>
                         <p class="questionnaire_field">
-                            <input type="password" th:field="*{user.password}" placeholder="Введите пароль преподавателя" required/>
+                            <input type="password" minlength="5" maxlength="20" th:field="*{user.password}" placeholder="Введите пароль преподавателя" required/>
                         </p>
                         <p class="questionnaire_field">
-                            <input type="number" th:field="*{teacher.experience}" placeholder="Введите стаж преподавателя" required/>
+                            <input type="number" min="1" th:field="*{teacher.experience}" placeholder="Введите стаж преподавателя" required/>
                         </p>
                         <p class="questionnaire_field">
                             <input type="text" th:field="*{teacher.additionalInfo}" placeholder="Введите информацию о преподавателе"/>

@@ -38,19 +38,19 @@
                 <form th:action="@{/student/studentProfile/{id}(id=${staticStudent.id})}" th:method="PATCH">
                     <p>Хотите изменить текущие данные?</p>
                     <p class="registration_field">
-                        Логин <input type="text" th:field="*{staticStudent.users.login}" placeholder="Логин" required/>
+                        Логин <input type="text" minlength="5" maxlength="20" th:field="*{staticStudent.users.login}" placeholder="Логин" required/>
                     </p>
                     <p class="registration_field">
-                        Пароль <input type="text" th:field="*{staticStudent.users.password}" placeholder="Пароль" required/>
+                        Пароль <input type="text" minlength="5" maxlength="20" th:field="*{staticStudent.users.password}" placeholder="Пароль" required/>
                     </p>
                     <p class="registration_field">
-                        Имя <input type="text" th:field="*{staticStudent.name}" placeholder="Имя" required/>
+                        Имя <input type="text" minlength="2" maxlength="20"  th:field="*{staticStudent.name}" placeholder="Имя" required/>
                     </p>
                     <p class="registration_field">
-                        Фамилия <input type="text" th:field="*{staticStudent.lastName}" placeholder="Фамилия" required/>
+                        Фамилия <input type="text" minlength="2" maxlength="30" th:field="*{staticStudent.lastName}" placeholder="Фамилия" required/>
                     </p>
                     <p class="registration_field">
-                        Почта <input id="pass610" type="email" th:field="*{staticStudent.email}" placeholder="Почта" required/>
+                        Почта <input id="pass610" type="email" pattern=".+@gmail\.com" th:field="*{staticStudent.email}" placeholder="Почта" required/>
                     </p>
                     <p class="save_field">
                         <input type="submit" value="Сохранить" />

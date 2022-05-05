@@ -30,19 +30,19 @@
                 <form th:action="@{/registrationPage}" th:method="POST">
                     <div>
                         <p class="registration_field">
-                            <input type="text" th:field="*{student.lastName}" placeholder="Введите Фамилию" required />
+                            <input type="text" minlength="2" maxlength="20" th:field="*{student.lastName}" placeholder="Введите Фамилию" required />
                         </p>
                         <p class="registration_field">
-                            <input type="text" th:field="*{student.name}" placeholder="Введите Имя" required />
+                            <input type="text" minlength="2" maxlength="20" th:field="*{student.name}" placeholder="Введите Имя" required />
                         </p>
                         <p class="registration_field">
-                            <input type="text" th:field="*{user.login}" placeholder="Введите логин" required />
+                            <input type="text" minlength="5" maxlength="20" th:field="*{user.login}" placeholder="Введите логин" required />
                         </p>
                         <p class="registration_field">
-                            <input id="pass400" type="password" th:field="*{user.password}" placeholder="Введите пароль" required />
+                            <input id="pass400" minlength="5" maxlength="20" type="password" th:field="*{user.password}" placeholder="Введите пароль" required />
                         </p>
                         <p class="registration_field">
-                            <input type="email" th:field="*{student.email}" placeholder="Введите электронную почту" required />
+                            <input type="email" pattern=".+@gmail\.com" th:field="*{student.email}" placeholder="Введите электронную почту" required />
                         </p>
                         <p class="save_field">
                             <input type="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ" />

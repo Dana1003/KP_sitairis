@@ -62,13 +62,13 @@
                 <form th:action="@{/admin/editCourse/{id}(id=${course.id})}" th:method="PATCH">
                     <div>
                         <p class="questionnaire_field">
-                            <input type="text" th:field="*{course.courseName}" placeholder="*Введите название курса" required />
+                            <input type="text" minlength="10" th:field="*{course.courseName}" placeholder="*Введите название курса" required />
                         </p>
                         <p class="questionnaire_field">
-                            <input type="text" th:field="*{course.language}" placeholder="*Введите язык программирования" required />
+                            <input type="text" minlength="1" maxlength="15" th:field="*{course.language}" placeholder="*Введите язык программирования" required />
                         </p>
                         <p class="questionnaire_field">
-                            <input type="number" th:field="*{course.duration}" placeholder="*Введите продолжительность курса (кол-во месяцев)" required />
+                            <input type="number" min="1" max="12" th:field="*{course.duration}" placeholder="*Введите продолжительность курса (кол-во месяцев)" required />
                         </p>
                         <p>
                             <select name="teachers[]" th:field="${course.teacher.id}" class="registration_field" required="required">

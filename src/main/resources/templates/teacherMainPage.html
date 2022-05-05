@@ -54,7 +54,7 @@
                         <option value="" disabled>*Выберите курс и студента:</option>
                         <option th:each="stC: ${studentCourse}" th:value="${stC.id}" th:text="'*'+${stC.course.courseName}+ '*'+ ' ' +${stC.student.name} + ' ' +${stC.student.lastName}"></option>
                     </select>
-                    <input id="width1400" type="number" th:field="*{newScore.task}" min="1" max="10" placeholder="Введите номер задания" />
+                    <input id="width1400" type="number" th:field="*{newScore.task}" min="1" max="5" placeholder="Введите номер задания" />
                     <input id="width2400" type="number" th:field="*{newScore.grade}" min="1" max="10" placeholder="Введите номер оценку" />
                     <input type="submit" value="СОХРАНИТЬ" />
                 </p>
