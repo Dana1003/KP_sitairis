@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{/teacherMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-menu">
+                <li><a th:href="@{teacherMainPage#gradebook}" class="menu-item">Журнал успеваемости</a></li>
+                <li><a th:href="@{/teacherProfile}" class="menu-item">Учётная запись</a></li>
+                <li><a th:href="@{/mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div id="question">
+                <form th:action="@{/teacher/teacherProfile/{id}(id=${staticTeacher.id})}" th:method="PATCH">
+                    <p>Хотите изменить текущие данные?</p>
+                    <p class="registration_field">
+                        Логин <input type="text" minlength="5" maxlength="20" th:field="*{staticTeacher.users.login}" placeholder="Логин" required/>
+                    </p>
+                    <p class="registration_field">
+                        Пароль <input type="text" minlength="5" maxlength="20" th:field="*{staticTeacher.users.password}" placeholder="Пароль" required/>
+                    </p>
+                    <p class="registration_field">
+                        Имя <input type="text" minlength="2" maxlength="20"  th:field="*{staticTeacher.name}" placeholder="Имя" required/>
+                    </p>
+                    <p class="registration_field">
+                        Фамилия <input type="text" minlength="2" maxlength="30" th:field="*{staticTeacher.lastName}" placeholder="Фамилия" required/>
+                    </p>
+                    <p class="registration_field">
+                        Стаж <input id="pass610" min="1" type="number"  th:field="*{staticTeacher.experience}" placeholder="Стаж" required/>
+                    </p>
+                    <p class="registration_field">
+                       Дополнительная информация <input type="text" th:field="*{staticTeacher.additionalInfo}" placeholder="Дополнительная информация"/>
+                    </p>
+                    <p class="save_field">
+                        <input type="submit" value="Сохранить" />
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
