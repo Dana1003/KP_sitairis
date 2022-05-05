@@ -24,7 +24,7 @@
                     <ul class="dropdown-content">
                         <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>
                         <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
-                        <li><a href="#" class="menu-item">Оставить отзыв</a></li>
+                        <li><a th:href="@{/studentReport}" class="menu-item">Оставить отзыв</a></li>
                         <li><a th:href="@{/studentRating}" class="menu-item">Рейтинг студентов</a></li>
                     </ul>
                 </div>
