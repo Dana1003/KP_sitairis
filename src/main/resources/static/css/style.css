@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    -webkit-scroll-behavior: smooth !important;
 }
 :root {
     --color-gold: #BDAE82;
@@ -250,6 +251,9 @@ main {
 #width1400 {
     width: 400px;
     margin-top: 20px;
+}
+#text_center {
+    text-align: center;
 }
 #width2400{
     width: 400px;
