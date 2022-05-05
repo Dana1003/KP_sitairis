@@ -204,4 +204,23 @@ public class StudentController {
         }
         return "studentReports";
     }
+    @GetMapping("/studentRateTeachers")
+    public String studRateTeachGet (Model model) {
+        var teacherList = teacherRepository.findAll();
+        model.addAttribute("teachers", teacherList);
+        model.addAttribute("teach", new Teacher());
+        model.addAttribute("staticStudent", getStaticStudent());
+        return "studentRateTeachers";
+    }
+    @PatchMapping("/studentRateTeachers")
+    public String studRateTeachersPatch(@ModelAttribute("teacher") Teacher teacher) {
+        var newObj1 = teacherRepository.findById(teacher.getId()).get();
+        if (newObj1.getRating() == null) {
+            newObj1.setRating(0);
+        }
+        int average = teacher.getRating() + newObj1.getRating();
+        newObj1.setRating(average);
+        teacherRepository.save(newObj1);
+        return "redirect:/studentRateTeachers";
+    }
 }

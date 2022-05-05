@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>СиТАиРИС</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <nav class="nav-class1">
+            <ul class="list-menu1">
+                <li><a th:href="@{studentMainPage}" class="menu-item">MoveRight</a></li>
+            </ul>
+        </nav>
+        <nav class="nav-class">
+            <ul class="list-student-menu">
+                <li><a th:href="@{/studentMainPage#education}" class="menu-item">Обучение</a></li>
+                <li><a th:href="@{/studentMainPage#teachers}" class="menu-item">Преподаватели</a></li>
+                <li><a th:href="@{/studentMainPage#reports}" class="menu-item">Отзывы</a></li>
+                <div class="dropdown">
+                    <li><a th:href="@{#}" class="menu-item">Учётная запись</a></li>
+                    <ul class="dropdown-content">
+                        <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>
+                        <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
+                        <li><a th:href="@{/studentReport}" class="menu-item">Оставить отзыв</a></li>
+                        <li><a th:href="@{/studentRating}" class="menu-item">Рейтинг студентов</a></li>
+                        <li><a th:href="@{/studentRateTeachers}" class="menu-item">Оценить преподавателя</a></li>
+                    </ul>
+                </div>
+                <li><a th:href="@{mainPage}" class="menu-item">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section" id="mainSelection">
+            <div class="reports-item">
+                <table id="delete_table">
+                    <tr>
+                        <th>Имя преподавателя</th>
+                        <th>Стаж (в годах)</th>
+                        <th>Рейтинг</th>
+                        <th>О себе</th>
+                    </tr>
+                    <div th:each="teacher: ${teachers}">
+                        <tr>
+                            <td th:text="${teacher.name} + ' ' + ${teacher.lastName}"></td>
+                            <td th:text="${teacher.experience}"></td>
+                            <td th:text="${teacher.rating}"></td>
+                            <td th:text="${teacher.additionalInfo}"></td>
+                        </tr>
+                    </div>
+                </table>
+                <form th:action="@{/studentRateTeachers}" th:method="PATCH">
+                    <p id="login">
+                        <select name="teachers[]" th:field="${teach.id}" class="registration_field" id="pass432" required="required">
+                            <option value="" disabled>*Выберите преподавателя:</option>
+                            <option th:each="teacher: ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}+ ' ' + ${teacher.lastName}"></option>
+                        </select>
+                        <input type="number" id="width1400" th:field="*{teach.rating}" min="1" max="5" placeholder="Введите вашу оценку преподавателю" >
+                        <input type="submit" value="СОХРАНИТЬ" />
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+</div>
+</body>
+</html>
