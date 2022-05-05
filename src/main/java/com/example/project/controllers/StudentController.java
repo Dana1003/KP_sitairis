@@ -51,7 +51,7 @@ public class StudentController {
         }
         var studList = studentRepository.findAll();
         for (var item:studList) {
-            if(staticStudent == null || staticUser.getId().equals(item.getUsers().getId())) {
+            if(item.getUsers().getId().equals(user.getId())) {
                 setStaticStudent(item);
             }
         }
