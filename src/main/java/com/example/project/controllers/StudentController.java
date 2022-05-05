@@ -45,7 +45,7 @@ public class StudentController {
     public static Student getStaticStudent(){return staticStudent;}
 
     @GetMapping("/studentMainPage")
-    public String studentMP(Model model, @ModelAttribute("user") Users user) {
+    public String studentMP(Model model, @ModelAttribute("user") Users user) throws IOException {
         if(getStaticUser() == null || user.getId() != null && !getStaticUser().getId().equals(user.getId())){
             setStaticUser(user);
         }
@@ -60,6 +60,26 @@ public class StudentController {
         var teacherList = teacherRepository.findAll();
         model.addAttribute("teachers", teacherList);
         model.addAttribute("staticStudent", getStaticStudent());
+
+        File file = new File("reports.json");
+        if(file.length() == 0)
+            model.addAttribute("list", new ReportList());
+        else {
+            InputStream inputStream = new FileInputStream("reports.json");
+            var objectMapper = Mapper.GetMapper();
+            var a = objectMapper.readValue(inputStream, ReportList.class);
+            if(a.getList().size() > 3) {
+                var cutList = new ArrayList<Report>();
+                for (var i = a.getList().size() - 3; i < a.getList().size(); i++) {
+                    cutList.add(a.getList().get(i));
+                }
+                model.addAttribute("list", cutList);
+            }
+            else {
+                model.addAttribute("list", a.getList());
+            }
+        }
+
         return "studentMainPage";
     }
     @GetMapping("/questionnairePage")
