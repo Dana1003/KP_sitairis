@@ -1,5 +1,8 @@
 package com.example.project.controllers;
 
+import com.example.project.Mapper;
+import com.example.project.Report;
+import com.example.project.ReportList;
 import com.example.project.entity.*;
 import com.example.project.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.ArrayList;
 
 @Controller
@@ -148,5 +152,36 @@ public class StudentController {
         model.addAttribute("scoreL", scoreList);
         model.addAttribute("staticStudent", getStaticStudent());
         return "studentRating";
+    }
+
+    @GetMapping("/studentReports/Add")
+    public String AddReport(Model model){
+        model.addAttribute("report", new Report());
+        model.addAttribute("staticStudent", getStaticStudent());
+        return "studentReports";
+    }
+
+    @PostMapping("/studentReports/Add")
+    public String WriteReport(@ModelAttribute("report") Report report) throws IOException {
+        report.setLogin(getStaticUser().getLogin());
+        File file = new File("reports.json");
+        if(file.length() == 0){
+            var objectMapper = Mapper.GetMapper();
+            ReportList reportList = new ReportList();
+            var l = new ArrayList<Report>();
+            l.add(report);
+            reportList.setList(l);
+            OutputStream outputStream = new FileOutputStream("reports.json");
+            objectMapper.writeValue(outputStream, reportList);
+        }
+        else {
+            InputStream inputStream = new FileInputStream("reports.json");
+            var objectMapper = Mapper.GetMapper();
+            var a = objectMapper.readValue(inputStream, ReportList.class);
+                a.getList().add(report);
+                OutputStream outputStream = new FileOutputStream("reports.json");
+                objectMapper.writeValue(outputStream, a);
+        }
+        return "studentReports";
     }
 }
