@@ -37,24 +37,25 @@
                         <th>Номер задания</th>
                         <th>Оценка</th>
                     </tr>
-                    <div th:each="stCourList: ${studentCourseList}">
+                    <div th:each="c: ${scores}">
                         <tr>
-                            <td th:text="${stCourList.course.courseName}"></td>
-                            <td th:text="${stCourList.course.teacher.name}+ ' ' +${stCourList.course.teacher.lastName}"></td>
-                            <td th:text="${stCourList.student.name}+ ' ' +${stCourList.student.lastName}"></td>
-                            <td th:text="${score.task}"></td>
-                            <td th:text="${score.grade}"></td>
+                            <td th:text="${c.studentCourse.course.courseName}"></td>
+                            <td th:text="${c.studentCourse.course.teacher.name}+ ' ' +${c.studentCourse.course.teacher.lastName}"></td>
+                            <td th:text="${c.studentCourse.student.name}+ ' ' +${c.studentCourse.student.lastName}"></td>
+                            <td th:text="${c.task}"></td>
+                            <td th:text="${c.grade}"></td>
+
                         </tr>
                     </div>
                 </table>
                 <form th:action="@{/teacherMainPage}" th:method="POST">
                 <p id="login">
-                    <select name="students[]" th:field="${score.studentCourse}" class="registration_field" id="pass432" required="required">
+                    <select name="students[]" th:field="${newScore.studentCourse}" class="registration_field" id="pass432" required="required">
                         <option value="" disabled>*Выберите курс и студента:</option>
-                        <option th:each="studCourse: ${studentCourseList}" th:value="${studCourse.id}" th:text="'*'+${studCourse.course.courseName}+ '*'+ ' ' +${studCourse.student.name} + ' ' +${studCourse.student.lastName}"></option>
+                        <option th:each="stC: ${studentCourse}" th:value="${stC.id}" th:text="'*'+${stC.course.courseName}+ '*'+ ' ' +${stC.student.name} + ' ' +${stC.student.lastName}"></option>
                     </select>
-                    <input id="width1400" type="number" th:field="*{score.task}" placeholder="Введите номер задания" />
-                    <input id="width2400" type="number" th:field="*{score.grade}" placeholder="Введите номер оценку" />
+                    <input id="width1400" type="number" th:field="*{newScore.task}" min="1" max="10" placeholder="Введите номер задания" />
+                    <input id="width2400" type="number" th:field="*{newScore.grade}" min="1" max="10" placeholder="Введите номер оценку" />
                     <input type="submit" value="СОХРАНИТЬ" />
                 </p>
                 </form>

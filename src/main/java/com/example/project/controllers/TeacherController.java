@@ -33,19 +33,48 @@ public class TeacherController {
     public String teacherMPGet(Model model, @ModelAttribute("teacher") Users user) {
         var teachList = teacherRepository.findAll();
         for (var item:teachList) {
-            if(staticTeacher == null || item.getUsers().getId().equals(user.getId())) {
+            if(item.getUsers().getId().equals(user.getId())) {
                 setStaticTeacher(item);
             }
         }
-        var fullList = studentCourseRepository.findAll();
+        /*
+        var fullCSList = studentCourseRepository.findAll();
         var studCourList = new ArrayList<StudentCourse>();
-        for (var item :fullList) {
+        for (var item :fullCSList) {
             if (item.getCourse().getTeacher().getId().equals(getStaticTeacher().getId())){
                 studCourList.add(item);
             }
-        }
+        } // ищу курс и студентов конкретного учиетля , чья запись
         model.addAttribute("studentCourseList", studCourList);
+        var fullScoreList = scoreRepository.findAll();
+        var scoreList = new ArrayList<Score>();
+        for (var item: fullScoreList) {
+            for (var itemStudCourse: studCourList) {
+                if (item.getStudentCourse().equals(itemStudCourse)) {
+                    scoreList.add(item);
+                }
+            }
+        } // а потом через этот лист оценки ищу и тоже в лист добавляю
+        model.addAttribute("scoreList", scoreList);
         model.addAttribute("score", new Score());
+
+         */
+        var fullScoreList = scoreRepository.findAll();
+        var sortedScores = new ArrayList<Score>();
+        for(var item : fullScoreList){
+            if(item.getStudentCourse().getCourse().getTeacher().getId().equals(getStaticTeacher().getId()))
+                sortedScores.add(item);
+        }
+        var studCourseList = studentCourseRepository.findAll();
+        var sortedCourse = new ArrayList<StudentCourse>();
+        for (var item: studCourseList) {
+            if(item.getCourse().getTeacher().getId().equals(getStaticTeacher().getId())) {
+                sortedCourse.add(item);
+            }
+        }
+        model.addAttribute("scores", sortedScores);
+        model.addAttribute("newScore", new Score());
+        model.addAttribute("studentCourse", sortedCourse);
         return "teacherMainPage";
     }
     @PostMapping("/teacherMainPage")
