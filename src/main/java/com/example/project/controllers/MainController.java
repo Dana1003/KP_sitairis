@@ -125,7 +125,7 @@ public class MainController {
                 var addedUser = usersRepository.save(user);
                 student.setUsers(addedUser);
                 studentRepository.save(student);
-                //redirect
+                redirectAttributes.addFlashAttribute("user", user);
                 return "redirect:/studentMainPage";
             }
         }
