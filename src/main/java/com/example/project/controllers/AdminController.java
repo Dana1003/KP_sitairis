@@ -27,6 +27,14 @@ public class AdminController {
     @Autowired
     public QuestRepository questRepository;
 
+    protected static Teacher staticTeacher;
+    public static void setTeacher(Teacher teacher){
+        staticTeacher = teacher;
+    }
+    public static Teacher getTeacher(){
+        return staticTeacher;
+    }
+
     @GetMapping("/adminMainPage")
     public String adminMP(Model model) {
         var courseList = courseRepository.findAll();
