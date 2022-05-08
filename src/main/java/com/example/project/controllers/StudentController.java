@@ -176,14 +176,14 @@ public class StudentController {
         return "studentRating";
     }
 
-    @GetMapping("/studentReports/Add")
+    @GetMapping("/studentReport")
     public String AddReport(Model model){
         model.addAttribute("report", new Report());
         model.addAttribute("staticStudent", getStaticStudent());
         return "studentReports";
     }
 
-    @PostMapping("/studentReports/Add")
+    @PostMapping("/studentReport")
     public String WriteReport(@ModelAttribute("report") Report report) throws IOException {
         report.setLogin(getStaticUser().getLogin());
         File file = new File("reports.json");
