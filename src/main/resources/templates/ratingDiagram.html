@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <title>СиТАиРИС</title>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
 </head>
 
 <body>
-<form th:href="@{/studentReports/Add}" method="POST">
 <div class="container">
     <header>
         <nav class="nav-class1">
@@ -25,7 +25,7 @@
                     <ul class="dropdown-content">
                         <li><a th:href="@{/student/studentProfile/{id}(id=${staticStudent.id})}" class="menu-item">Профиль</a></li>
                         <li><a th:href="@{/studentAddCourse}" class="menu-item">Записаться на курс</a></li>
-                        <li><a th:href="@{/studentReport}" class="menu-item">Оставить отзыв</a></li>
+                        <li><a th:href="@{/studentReports/Add}" class="menu-item">Оставить отзыв</a></li>
                         <li><a th:href="@{/studentRating}" class="menu-item">Рейтинг студентов</a></li>
                         <li><a th:href="@{/studentRateTeachers}" class="menu-item">Оценить преподавателя</a></li>
                         <li><a th:href="@{/ratingDiagram}" class="menu-item">Самые популярные курсы</a></li>
@@ -36,14 +36,29 @@
         </nav>
     </header>
     <main>
-        <section class="section" id="mainSelection">
-            <p id="login">
-                <input style="height: 400px;" th:field="*{report.comment}" type="text" placeholder="Оставьте свой отзыв :)">
-                <input type="submit" value="ОТПРАВИТЬ ОТЗЫВ">
-            </p>
-        </section>
+        <section class="section" id="mainSelection"></section>
+
+        <script th:inline="javascript">
+            var myChart = echarts.init(document.getElementById('mainSelection'));
+            /*<![CDATA[*/
+            var rating = /*[[${course}]]*/;
+            /*]]>*/
+            var obj = [];
+            for(key in rating){
+                obj.push({value:rating[key],name:key});
+            }
+            option = {
+                series:[
+                    {
+                        type:'pie',
+                        data:obj
+                    }
+                ]
+            };
+            myChart.setOption(option);
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </main>
 </div>
-</form>
 </body>
 </html>

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class StudentController {
@@ -222,5 +224,15 @@ public class StudentController {
         newObj1.setRating(average);
         teacherRepository.save(newObj1);
         return "redirect:/studentRateTeachers";
+    }
+
+    @GetMapping ("/ratingDiagram")
+    public String diagram (Model model) {
+        ArrayList<StudentCourse> stCourseList = (ArrayList<StudentCourse>) studentCourseRepository.findAll();
+        Map<Object, Long> count = stCourseList.stream().collect(Collectors.groupingBy(e -> e.getCourse().getCourseName(), Collectors.counting()));
+        model.addAttribute("course",count);
+
+        model.addAttribute("staticStudent", getStaticStudent());
+        return "ratingDiagram";
     }
 }
