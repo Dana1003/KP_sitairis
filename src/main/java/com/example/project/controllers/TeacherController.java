@@ -38,28 +38,6 @@ public class TeacherController {
                 setStaticTeacher(item);
             }
         }
-        /*
-        var fullCSList = studentCourseRepository.findAll();
-        var studCourList = new ArrayList<StudentCourse>();
-        for (var item :fullCSList) {
-            if (item.getCourse().getTeacher().getId().equals(getStaticTeacher().getId())){
-                studCourList.add(item);
-            }
-        } // ищу курс и студентов конкретного учиетля , чья запись
-        model.addAttribute("studentCourseList", studCourList);
-        var fullScoreList = scoreRepository.findAll();
-        var scoreList = new ArrayList<Score>();
-        for (var item: fullScoreList) {
-            for (var itemStudCourse: studCourList) {
-                if (item.getStudentCourse().equals(itemStudCourse)) {
-                    scoreList.add(item);
-                }
-            }
-        } // а потом через этот лист оценки ищу и тоже в лист добавляю
-        model.addAttribute("scoreList", scoreList);
-        model.addAttribute("score", new Score());
-
-         */
         var fullScoreList = scoreRepository.findAll();
         var sortedScores = new ArrayList<Score>();
         for(var item : fullScoreList){
@@ -76,6 +54,7 @@ public class TeacherController {
         model.addAttribute("scores", sortedScores);
         model.addAttribute("newScore", new Score());
         model.addAttribute("studentCourse", sortedCourse);
+        model.addAttribute("staticTeacher", getStaticTeacher());
         return "teacherMainPage";
     }
     @PostMapping("/teacherMainPage")

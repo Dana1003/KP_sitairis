@@ -35,6 +35,7 @@
     </header>
     <main>
         <section class="section" id="mainSelection">
+            <h1 id="greetings" >Добро пожаловать, <a th:text="${staticStudent.lastName}+ ' ' +${staticStudent.name} + '!'"></a></h1>
             <a th:href="@{/questionnairePage}" class="menu-item" id="questionnaire_but">Заполнить анкету</a>
         </section>
         <section class="section" id="education">

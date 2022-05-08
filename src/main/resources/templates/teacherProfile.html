@@ -16,8 +16,8 @@
         </nav>
         <nav class="nav-class">
             <ul class="list-menu">
-                <li><a th:href="@{teacherMainPage#gradebook}" class="menu-item">Журнал успеваемости</a></li>
-                <li><a th:href="@{/teacherProfile}" class="menu-item">Учётная запись</a></li>
+                <li><a th:href="@{/teacherMainPage#gradebook}" class="menu-item">Журнал успеваемости</a></li>
+                <li><a th:href="@{/teacher/teacherProfile/{id} (id=${staticTeacher.id})}" class="menu-item">Учётная запись</a></li>
                 <li><a th:href="@{/mainPage}" class="menu-item">Выйти</a></li>
             </ul>
         </nav>

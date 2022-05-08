@@ -252,6 +252,10 @@ main {
     width: 400px;
     margin-top: 20px;
 }
+#greetings {
+    position: absolute;
+    margin-top: 130px;
+}
 #text_center {
     text-align: center;
 }
@@ -425,6 +429,7 @@ main {
     background-color: black;
     opacity: 0.5;
     z-index: -1;
+    margin: auto;
 }
 .student_table th, td {
     text-align: center;
