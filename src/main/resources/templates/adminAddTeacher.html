@@ -76,7 +76,7 @@
                             <input type="password" minlength="5" maxlength="20" th:field="*{user.password}" placeholder="Введите пароль преподавателя" required/>
                         </p>
                         <p class="questionnaire_field">
-                            <input type="number" min="1" th:field="*{teacher.experience}" placeholder="Введите стаж преподавателя" required/>
+                            <input type="number" min="1" max="50" th:field="*{teacher.experience}" placeholder="Введите стаж преподавателя" required/>
                         </p>
                         <p class="questionnaire_field">
                             <input type="text" th:field="*{teacher.additionalInfo}" placeholder="Введите информацию о преподавателе"/>

@@ -62,7 +62,7 @@
                 <form th:action="@{/admin/deleteTeacher/{id}(id=${teacher.id})}" th:method="DELETE">
                     <div>
                         <p class="questionnaire_field">
-                            <input type="text" disabled th:field="*{teacher.name + ' ' +teacher.lastName}" />
+                            <input type="text" disabled th:field="*{teacher.id}" />
                         </p>
                         <p class="questionnaire_field">
                             <input type="text" disabled th:field="*{teacher.experience}" />
